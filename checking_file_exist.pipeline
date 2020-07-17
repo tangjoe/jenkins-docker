@@ -1,0 +1,28 @@
+import hudson.model.*;
+
+println env.JOB_NAME
+println env.BUILF_NUMBER
+
+pipeline {
+    agent any
+    stages {
+        stage("Check file exist" {
+            steps {
+                script {
+                    try {
+                        out = sh(script: "ls /tmp ", returnStdout: true).toString()
+                        println out
+                        if (out.contains("Python-3.7.1.tgz")) {
+                            println "File existed."
+                        } else {
+                            sh("exit 1")
+                        }
+                    } catch(Exception e) {
+                        println e
+                        error("File not found.")
+                    }
+                }
+            }
+        }
+    }
+}
