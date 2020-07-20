@@ -1,3 +1,1 @@
-groovy/java.groovy
-groovy/dockerhub.groovy
-groovy/admin-jfrog.groovy
+groovy/*
