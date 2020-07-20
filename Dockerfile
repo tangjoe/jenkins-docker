@@ -2,8 +2,10 @@ FROM jenkins/jenkins:2.235.2-lts
   
 ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
 
-COPY plugin-list.txt /usr/share/jenkins/ref/plugin-list.txt
-RUN /usr/local/bin/install-plugins.sh < usr/share/jenkins/ref/plugin-list.txt
+COPY plugin.txt /usr/share/jenkins/ref/plugin.txt
+RUN /usr/local/bin/install-plugins.sh < usr/share/jenkins/ref/plugin.txt
+
+COPY seedJob.xml /usr/share/jenkins/ref/jobs/seed-job/config.xml
 
 USER root
 

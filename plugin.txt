@@ -35,14 +35,17 @@ subversion
 credentials
 ant
 mapdb-api
+docker-workflow
 pipeline-build-step
 durable-task
+docker-commons
 bouncycastle-api
 workflow-step-api
 okhttp-api
 workflow-job
 pipeline-model-definition
 handlebars
+authentication-tokens
 workflow-api
 pipeline-github-lib
 snakeyaml-api
@@ -76,7 +79,12 @@ workflow-cps
 apache-httpcomponents-client-4-api
 email-ext
 github-branch-source
-authentication-tokens
-docker-commons
-docker-workflow
+authorize-project
+job-dsl
+envinject-api
+envinject
+description-setter
+conditional-buildstep
+parameterized-trigger
+seed
 
