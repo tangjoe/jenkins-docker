@@ -5,7 +5,8 @@ ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
 COPY plugin.txt /usr/share/jenkins/ref/plugin.txt
 RUN /usr/local/bin/install-plugins.sh < usr/share/jenkins/ref/plugin.txt
 
-COPY seedJob.xml /usr/share/jenkins/ref/jobs/seed-job/config.xml
+COPY testing_tools_config.xml /usr/share/jenkins/ref/jobs/testing_tools/config.xml
+COPY testing_docker_config.xml /usr/share/jenkins/ref/jobs/testing_docker/config.xml
 
 USER root
 

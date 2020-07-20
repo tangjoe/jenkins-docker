@@ -14,8 +14,8 @@ usernameAndPassword = new UsernamePasswordCredentialsImpl(
   CredentialsScope.GLOBAL,
   "dockerhub",
   "Dockerhub login",
-  "USERNAME",
-  "PASSWORD"
+  "tangjoe88",
+  "passw0rd"
 )
 
 store.addCredentials(domain, usernameAndPassword)
