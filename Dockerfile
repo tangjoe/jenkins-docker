@@ -1,5 +1,8 @@
 FROM jenkins/jenkins:2.235.2-lts
   
+ENV JENKINS_USER admin
+ENV JENKINS_PASS admin
+
 ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
 
 COPY plugin.txt /usr/share/jenkins/ref/plugin.txt

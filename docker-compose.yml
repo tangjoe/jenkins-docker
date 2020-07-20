@@ -8,11 +8,11 @@ services:
       - "8080:8080"
       - "50000:50000"
     volumes:
-      - "jenkinsdocker:/var/jenkins_home"
+      - "jd_volume:/var/jenkins_home"
       - "./groovy:/var/jenkins_home/init.groovy.d"
       - /var/run/docker.sock:/var/run/docker.sock
 
 volumes:
-  jenkinsdocker:
+  jd_volume:
 networks:
   jd_net:
