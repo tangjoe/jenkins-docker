@@ -18,7 +18,7 @@ for (version in javaVersions) {
     def installer = new JDKInstaller(version.value, true)
     def installerProps = new InstallSourceProperty([installer])
     def installation = new JDK(version.key, "", [installerProps])
-    installer.getDescriptor().doPostCredential('EmailID', 'PASSWORD')
+    installer.getDescriptor().doPostCredential('tangwcjoe@gmail.com', 'P@ssw0rd')
     javaInstallations.push(installation)
 }
 
