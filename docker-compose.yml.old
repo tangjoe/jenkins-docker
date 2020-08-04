@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   jenkins:
-    image: "jenkinsdocker:2.235.3"
+    image: "jenkinsdocker:2.235.2"
     networks:
       - jd_net
     ports:
@@ -19,35 +19,15 @@ services:
     ports:
       - "9000:9000"
       - "9092:9092"
-    environment:
-      - SONARQUBE_JDBC_URL=jdbc:postgresql://postgresql:5432/sonar
-      - SONARQUBE_JDBC_USERNAME=sonar
-      - SONARQUBE_JDBC_PASSWORD=sonar
     ulimits:
       nofile:
         soft: "65536"
         hard: "65536"
     volumes:
       - "sonarqube_volume:/opt/sonarqube"
-    restart: always
-    depends_on:
-      - postgresql
-
-  postgresql:
-    image: "postgres:12.3"
-    networks:
-      - jd_net
-    environment:
-      - POSTGRES_USER=sonar
-      - POSTGRES_PASSWORD=sonar
-    volumes:
-      - "postgresql_volume:/var/lib/postgresql"
-    restart: always
 
 volumes:
   jd_volume:
   sonarqube_volume:
-  postgresql_volume:
 networks:
   jd_net:
-#   driver: bridge

@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:2.235.2-lts
+FROM jenkins/jenkins:2.235.3-lts
   
 ENV JENKINS_USER admin
 ENV JENKINS_PASS admin
@@ -20,6 +20,7 @@ apt-get -y install apt-transport-https \
      ca-certificates \
      curl \
      gnupg2 \
+     vim \
      software-properties-common && \
 curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg > /tmp/dkey; apt-key add /tmp/dkey && \
 add-apt-repository \

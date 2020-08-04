@@ -32,6 +32,7 @@ github-api
 github
 artifactory
 lockable-resources
+configuration-as-code
 jdk-tool
 momentjs
 subversion
@@ -87,4 +88,4 @@ workflow-cps
 apache-httpcomponents-client-4-api
 email-ext
 github-branch-source
-configuration-as-code
+performance
