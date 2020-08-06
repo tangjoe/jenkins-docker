@@ -1,0 +1,58 @@
+version: '3.3'
+services:
+  jenkins:
+    image: "jenkinsdocker:2.235.3"
+    container_name: jenkins
+    networks:
+      - cicd_net
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - "$HOME/Data/jenkins/jenkins_home:/var/jenkins_home"
+      - "./groovy:/var/jenkins_home/init.groovy.d"
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: always
+
+  sonarqube:
+    image: "sonarqube:8.4.1-community"
+    container_name: sonar
+    networks:
+      - cicd_net
+    ports:
+      - "9000:9000"
+      - "9092:9092"
+    environment:
+      - SONARQUBE_JDBC_URL=jdbc:postgresql://postgresql:5432/sonar
+      - SONARQUBE_JDBC_USERNAME=sonar
+      - SONARQUBE_JDBC_PASSWORD=sonar
+    ulimits:
+      nofile:
+        soft: "65536"
+        hard: "65536"
+    volumes:
+      - "$HOME/Data/sonar/sonarqube_conf:/opt/sonarqube/conf"
+      - "$HOME/Data/sonar/sonarqube_data:/opt/sonarqube/data"
+      - "$HOME/Data/sonar/sonarqube_extensions:/opt/sonarqube/extensions"
+      - "$HOME/Data/sonar/sonarqube_bundled-plugins:/opt/sonarqube/lib/bundled-plugins"
+    restart: always
+    depends_on:
+      - postgresql
+
+  postgresql:
+    image: "postgres:12.3"
+    container_name: postgresql
+    networks:
+      - cicd_net
+    environment:
+      - POSTGRES_USER=sonar
+      - POSTGRES_PASSWORD=sonar
+      - POSTGRES_DB=sonar
+    volumes:
+      - "$HOME/Data/postgresql/sonarqube_db:/var/lib/postgresql"
+      - "$HOME/Data/postgresql/postgresql_data:/var/lib/postgresql/data"
+    restart: always
+
+networks:
+  cicd_net:
+    driver: bridge

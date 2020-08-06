@@ -4,12 +4,12 @@ services:
     image: "jenkinsdocker:2.235.3"
     container_name: jenkins
     networks:
-      - cicd_net
+      - jd_net
     ports:
       - "8080:8080"
       - "50000:50000"
     volumes:
-      - "$HOME/Data/jenkins/jenkins_home:/var/jenkins_home"
+      - "jd_volume:/var/jenkins_home"
       - "./groovy:/var/jenkins_home/init.groovy.d"
       - /var/run/docker.sock:/var/run/docker.sock
     restart: always
@@ -18,10 +18,14 @@ services:
     image: "sonarqube:8.4.1-community"
     container_name: sonar
     networks:
-      - cicd_net
+      - jd_net
     ports:
       - "9000:9000"
       - "9092:9092"
+    environment:
+      - SONARQUBE_JDBC_URL=jdbc:postgresql://postgresql:5432/sonar
+      - SONARQUBE_JDBC_USERNAME=sonar
+      - SONARQUBE_JDBC_PASSWORD=sonar
     ulimits:
       nofile:
         soft: "65536"
@@ -29,28 +33,26 @@ services:
     volumes:
       - "sonarqube_volume:/opt/sonarqube"
     restart: always
+    depends_on:
+      - postgresql
 
-  nexus:
-    image: "sonatype/nexus3:3.25.1"
-    container_name: nexus
+  postgresql:
+    image: "postgres:12.3"
+    container_name: postgres
     networks:
-      - cicd_net
-    ports:
-      - "8081:8081"
-      - "8082:8082"
-      - "5000:5000"
+      - jd_net
     environment:
-      - INSTALL4J_ADD_VM_PARAMS=-Xms2g -Xmx2g -XX:MaxDirectMemorySize=3g
-      - NEXUS_CONTEXT=nexus
-      - CONTEXT_PATH=/
+      - POSTGRES_USER=sonar
+      - POSTGRES_PASSWORD=sonar
+      - POSTGRES_DB=sonar
     volumes:
-      - "nexus-data:/nexus-data"
+      - "postgresql_volume:/var/lib/postgresql"
     restart: always
 
 volumes:
+  jd_volume:
   sonarqube_volume:
-  nexus-data:
-
+  postgresql_volume:
 networks:
-  cicd_net:
-    driver: bridge
+  jd_net:
+#   driver: bridge

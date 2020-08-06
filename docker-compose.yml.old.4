@@ -30,26 +30,8 @@ services:
       - "sonarqube_volume:/opt/sonarqube"
     restart: always
 
-  nexus:
-    image: "sonatype/nexus3:3.25.1"
-    container_name: nexus
-    networks:
-      - cicd_net
-    ports:
-      - "8081:8081"
-      - "8082:8082"
-      - "5000:5000"
-    environment:
-      - INSTALL4J_ADD_VM_PARAMS=-Xms2g -Xmx2g -XX:MaxDirectMemorySize=3g
-      - NEXUS_CONTEXT=nexus
-      - CONTEXT_PATH=/
-    volumes:
-      - "nexus-data:/nexus-data"
-    restart: always
-
 volumes:
   sonarqube_volume:
-  nexus-data:
 
 networks:
   cicd_net:
