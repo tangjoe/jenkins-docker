@@ -4,7 +4,8 @@
 ### 
 ### 1. Enable "Docker Bearer Token Realm" in Nexus -> Administration -> Security -> Realms
 ### 
-### 2. Add
+### 2. Add below in the host docker engine
+###
 ###    "insecure-registries": [
 ###      "127.0.0.1:8082",
 ###      "127.0.0.1:5000"
