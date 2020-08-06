@@ -1,6 +1,6 @@
 # MUST READ
 
-### 0. Create docker repository in Nexus, docker-role in Security/Role and docker in Security/Users
+##### 0. Create docker repository in Nexus, docker-role in Security/Role and docker in Security/Users
 ### 
 ### 1. Enable "Docker Bearer Token Realm" in Nexus -> Administration -> Security -> Realms
 ### 
