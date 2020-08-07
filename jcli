@@ -1,0 +1,13 @@
+#!/bin/bash
+# http://localhost:8080/cli
+#
+# Manual install plguin
+#
+# Command:
+#    On host:
+#    - download the plugin
+#    - cp nexus-jenkins-plugin.hpi ~/Data/jenkins/jenkins_home/downloads/.
+#    - java -jar jenkins-cli.jar -s http://localhost:8080/ -ssh -i ~/.ssh/jenkins -user admin \
+#          install-plugin file:///var/jenkins_home/downloads/nexus-jenkins-plugin.hpi -deploy
+
+java -jar jenkins-cli.jar -s http://localhost:8080/ -ssh -i ~/.ssh/jenkins -user admin $@
