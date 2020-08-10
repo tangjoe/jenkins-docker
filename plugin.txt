@@ -11,6 +11,7 @@ pipeline-model-extensions
 workflow-aggregator
 mailer
 git
+pipeline-utility-steps
 jquery3-api
 command-launcher
 workflow-api
@@ -54,6 +55,7 @@ envinject
 pipeline-rest-api
 workflow-basic-steps
 github-api
+nexus-artifact-uploader
 ldap
 maven-plugin
 credentials-binding
@@ -63,6 +65,8 @@ pipeline-stage-view
 sonar
 seed
 token-macro
+ssh
+nexus-jenkins-plugin
 workflow-multibranch
 script-security
 git-server
@@ -93,4 +97,6 @@ workflow-support
 resource-disposer
 build-timeout
 mapdb-api
-ssh
+kubernetes-client-api
+kubernetes-credentials
+kubernetes-cli

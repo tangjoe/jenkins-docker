@@ -19,19 +19,23 @@ RUN apt-get update && \
 apt-get -y install apt-transport-https \
      ca-certificates \
      curl \
-     gnupg2 \
      net-tools \
      vim \
      software-properties-common && \
-curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg > /tmp/dkey; apt-key add /tmp/dkey && \
+curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg > /tmp/dkey-1; apt-key add /tmp/dkey-1 && \
+curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg > /tmp/dkey-2; apt-key add /tmp/dkey-2 && \
+echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list && \
 add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \
    $(lsb_release -cs) \
    stable" && \
 apt-get update && \
-apt-get -y install docker-ce
+apt-get -y install docker-ce && \
+apt-get -y install kubectl && \
+apt-get clean autoclean && \
+apt-get autoremove --yes && \
+rm -rf /var/lib/{apt,dpkg,cache,log}/
 
-RUN apt-get install -y docker-ce
 RUN usermod -a -G root jenkins
 RUN usermod -a -G docker jenkins
 
