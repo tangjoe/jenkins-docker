@@ -1,4 +1,4 @@
-version: '3.3'
+version: '3.5'
 services:
   jenkins:
     image: "jenkinsdocker:2.235.3"
@@ -54,4 +54,5 @@ volumes:
 
 networks:
   cicd_net:
+    name: cicd_net
     driver: bridge

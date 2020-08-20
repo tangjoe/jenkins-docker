@@ -15,7 +15,6 @@ pipeline-utility-steps
 jquery3-api
 command-launcher
 workflow-api
-docker-build-publish
 workflow-job
 ssh-credentials
 authentication-tokens
@@ -24,7 +23,6 @@ javadoc
 workflow-cps-global-lib
 jackson2-api
 ssh-slaves
-kubernetes-client-api
 docker-workflow
 pipeline-stage-tags-metadata
 pipeline-milestone-step
@@ -60,7 +58,6 @@ github-api
 nexus-artifact-uploader
 ldap
 maven-plugin
-kubernetes-credentials
 credentials-binding
 pipeline-model-definition
 config-file-provider
@@ -74,7 +71,6 @@ workflow-multibranch
 script-security
 git-server
 snakeyaml-api
-kubernetes-cli
 workflow-step-api
 run-condition
 okhttp-api
@@ -101,3 +97,6 @@ workflow-support
 resource-disposer
 build-timeout
 mapdb-api
+kubernetes-client-api
+kubernetes-credentials
+kubernetes-cli

@@ -12,10 +12,10 @@ store = instance.getExtensionList(
 
 usernameAndPassword = new UsernamePasswordCredentialsImpl(
   CredentialsScope.GLOBAL,
-  "admin.jfrog",
-  "admin @ jfrog",
-  "USERNAME",
-  "PASSWORD"
+  "maven-login-on-nexus",
+  "maven-login-on-nexus",
+  "maven",
+  "P@ssw0rd"
 )
 
 store.addCredentials(domain, usernameAndPassword)

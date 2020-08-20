@@ -12,9 +12,9 @@ store = instance.getExtensionList(
 
 usernameAndPassword = new UsernamePasswordCredentialsImpl(
   CredentialsScope.GLOBAL,
-  "maven",
-  "Login details to Nexus Repository Manager - for maven",
-  "maven",
+  "docker-login-on-nexus",
+  "docker-login-on-nexus",
+  "docker",
   "P@ssw0rd"
 )
 
