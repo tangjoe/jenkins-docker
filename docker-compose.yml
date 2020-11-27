@@ -48,9 +48,34 @@ services:
       - "nexus-data:/nexus-data"
     restart: always
 
+  clair-postgres:
+    image: "arminc/clair-db:latest"
+    container_name: clair-postgres
+    networks:
+      - cicd_net
+    ports:
+      - "5432:5432"
+    volumes:
+      - clair-postgres:/var/lib/postgresql/data
+    restart: always
+
+  clair:
+    image: "quay.io/coreos/clair:latest"
+    container_name: clair
+    command: [-config, /config/config.yaml]
+    networks:
+      - cicd_net
+    ports:
+      - "6060:6060"
+      - "6061:6061"
+    volumes:
+      - ./clair-config.yaml:/config/config.yaml
+    restart: always
+
 volumes:
   sonarqube_volume:
   nexus-data:
+  clair-postgres:
 
 networks:
   cicd_net:

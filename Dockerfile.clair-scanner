@@ -1,0 +1,13 @@
+# Build stage
+FROM golang:1.15.0-alpine3.12 AS build
+RUN apk add make git \
+    && mkdir /app \
+    && cd /app \
+    && git clone http://www.github.com/arminc/clair-scanner \
+    && cd clair-scanner; make ensure && make build \
+    && make cross
+
+# Run state
+FROM debain:jessie
+COPY --from=build /app/clair-scanner/clair-scanner clair-scanner
+CMD tail -f /dev/null

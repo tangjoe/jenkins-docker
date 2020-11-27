@@ -15,12 +15,16 @@ COPY Job2_testing_docker_config.xml /usr/share/jenkins/ref/jobs/Job2_testing_doc
 
 USER root
 
+COPY clair-scanner_linux_amd64 /usr/local/bin/clair-scanner
+
 RUN apt-get update && \
 apt-get -y install apt-transport-https \
      ca-certificates \
      curl \
      net-tools \
      vim \
+     jq \
+     sudo \
      software-properties-common && \
 curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg > /tmp/dkey-1; apt-key add /tmp/dkey-1 && \
 curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg > /tmp/dkey-2; apt-key add /tmp/dkey-2 && \
@@ -34,10 +38,12 @@ apt-get -y install docker-ce && \
 apt-get -y install kubectl && \
 curl -L "https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && \
 chmod +x /usr/local/bin/docker-compose && \
+chmod +x /usr/local/bin/clair-scanner && \
 apt-get clean autoclean && \
 apt-get autoremove --yes && \
 rm -rf /var/lib/{apt,dpkg,cache,log}/
 
+RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
 RUN usermod -a -G root jenkins
 RUN usermod -a -G docker jenkins
 

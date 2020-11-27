@@ -21,3 +21,7 @@
 #####     # docker tag alpine:3.6 127.0.0.1:8082/myalpine:3.6
 #####     # docker push 127.0.0.1:8082/myalpine:3.6
 ##### 
+
+##### Create a raw repository for XML configuration
+##### Upload the file
+##### --> curl -v -u rawxml:P@ssw0rd --upload-file pom.xml http://localhost:8081/nexus/repository/raw-xml-config/pom.xml
